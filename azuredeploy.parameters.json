@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "siteName": {
-            "value": "pplz-amworkop-micro"
+            "value": "{GEN-UNIQUE-10}"
         },
         "appServicePlanName": {
-            "value": "pplz-asp-micro"
+            "value": "{GEN-UNIQUE-11}"
         },
         "appServiceEnvironmentName": {
-            "value": "pplz-iase-micro"
+            "value": "{GEN-UNIQUE-12}"
         },
         "existingAseLocation": {
-            "value": "WEST US"
+            "value": "{GEN-UNIQUE-13}"
         },
         "workerPool": {
-            "value": "1"
+            "value": "{GEN-UNIQUE-14}"
         }
     }
 }
