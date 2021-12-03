@@ -26,6 +26,13 @@
                 "description": "Set this to the same location as the App Service Environment"
             }
         },
+        "linuxFxVersion": {
+            "type": "string",
+            "defaultValue": "Java|11-java11",
+            "metadata": {
+                "description": "The Runtime stack of current web app"
+            }
+        },
         "workerPool": {
             "type": "string",
             "allowedValues": [
@@ -55,7 +62,8 @@
             "properties": {
                 "name": "[parameters('appServicePlanName')]",
                 "hostingEnvironmentProfile": {
-                     "id": "[resourceId('Microsoft.Web/hostingEnvironments',parameters('appServiceEnvironmentName'))]"
+                     "id": "[resourceId('Microsoft.Web/hostingEnvironments',parameters('appServiceEnvironmentName'))]",
+                     "reserved": true
                 }
             },
             "sku": {
@@ -64,7 +72,8 @@
                 "size": "[concat('I',parameters('workerPool'))]",
                 "family": "I",
                 "capacity": "[parameters('numberOfWorkersFromWorkerPool')]"
-            }
+            },
+            "kind": "linux"
         },
         {
             "apiVersion": "2020-12-01",
@@ -74,6 +83,9 @@
             "properties": {
                 "name": "[parameters('siteName')]",
                 "serverFarmId": "[resourceId('Microsoft.Web/serverFarms',parameters('appServicePlanName'))]",
+                "siteConfig": {
+                    "linuxFxVersion": "[parameters('linuxFxVersion')]"
+                },
                 "hostingEnvironmentProfile": {
                      "id": "[resourceId('Microsoft.Web/hostingEnvironments', parameters('appServiceEnvironmentName'))]"
                 }
